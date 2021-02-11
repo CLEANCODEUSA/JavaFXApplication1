@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -17,17 +18,24 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Button btn = new Button("Click me");
+        Button exit = new Button("Exit");
+        exit.setOnAction(e -> {
+            // more statements
+            System.exit(0);
+        });
+        
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("You clicked the button.");
             }
         });
-
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        VBox root = new VBox();
+        //StackPane root = new StackPane();
+        root.getChildren().addAll(btn, exit);
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("JavaFX Demo");
         primaryStage.show();
     }
 }
